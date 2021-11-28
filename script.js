@@ -1,37 +1,3 @@
-//create an object to contain all the characters 
-
-// input function (asking the user for inpu password length, password characters) 
-var lengthInput = function (){
-  // promt the user for password length
-  var userInput = window.prompt('Enter password length from 8 to 128 characters.');
-  userInput = parseInt(userInput);
-//check the user input
-if (userInput >=8 && userInput<=128){
-  window.alert('you select '+ userInput+ ' characters');
-}else{
-  window.alert ('Please enter a valid input')
-  lengthInput();
-}
-};
-lengthInput();
-//assking the user for uppercase alphabet
-function upperInput(){
-  var userUppercaseIn = window.confirm('would you like UPPERCASE characters');
-  if (userUppercaseIn){
-    window.alert('you included UPPERCASE');
-
-   return uppercase;
-  }else{
-    window.alert('you chooset not to include UPPERCASE');
-  }
-  console.log(upperInput());
-};
-upperInput();
-console.log(upperInput());
-
-
-
-
 //generate character function by using Math.
 var uppercase = function(){
   return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
@@ -45,49 +11,128 @@ var number = function(){
 var spicalChar = function (){
   var symbols ='!@#$%^&*(){}[]=<>/,.'
   return symbols[Math.floor(Math.random()* symbols.length)];
+};
+
+// input function (asking the user for inpu password length, password characters) 
+var lengthInput = function (){
+  // promt the user for password length
+  var userInput = window.prompt('Enter password length from 8 to 128 characters.');
+  userInput = parseInt(userInput);
+//check the user input
+if (userInput >=8 && userInput<=128){
+  window.alert('you select '+ userInput+ ' characters');
+  return userInput;
+  //1-if the user enter less or more than 128 
+  //2-alert the user that they need to enter a valid input
+  //3- recall the function
+}else{
+  window.alert ('Please enter a valid input');
+lengthInput();
 }
-console.log(number());
-var passwordChar = {
-  upperAlphabet : uppercase,
-  lowerAlphaber : lowerCase,
-  numbers : number,
-  symbols : spicalChar
+};
+
+//asking the user for uppercase alphabet
+var upperInput= function(){
+  //ask the user if they like to add uppercase 
+  var userUppercaseIn = window.confirm('would you like UPPERCASE characters');
+  // check the return value of the user selection
+  if (userUppercaseIn){
+    //inform the user if the return value is true
+    window.alert('you included UPPERCASE');
+   return true;
+   //infrom the user if the return value is false
+  }else{
+    window.alert('you choose not to include UPPERCASE characters');
+  }
+return false
 };
 
 
-// var uppercaseArr =['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-// var lowercaseArr =['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-// var numberArr=['0','1','2','3','4','5','6','7','8','9'];
-// var symbols = ["'","!","@","#","$","%","^","&","*","(",")","{","}","[","]","=","<",">","/",",",".","|"];
-// for (var i =0; i< uppercaseArr.length; i++){
-//   console.log(uppercaseArr[i]);
-// }
-// for (var i =0; i< lowercaseArr.length; i++){
-//   console.log(lowercaseArr[i]);
-// }
-// for (var i =0; i< numberArr.length; i++){
-//   console.log(numberArr[i]);
-// }
-// for (var i =0; i< symbols.length; i++){
-//   console.log(symbols[i]);
-// }
-//ask the user for the password length
+//asking the user for lowecase alphabet
+var lowerInput= function(){
+    //ask the user if they like to add lowercase
+  var userLowercaseIn = window.confirm('would you like lowercase characters');
+   // check the return value of the user selection
+  if (userLowercaseIn){
+        //inform the user if the return value is true
+    window.alert('you included lowercase characters');
+   return true;
+       //inform the user if the return value is false
+  }else{
+    window.alert('you choose not to include lowercase characters');
+  }
+return false
+};
 
+//asking the user for number alphabet
+var numberInput= function(){
+    //ask the user if they like to add numbers
+  var userNumberIn = window.confirm('would you like to use numbers');
+     // check the return value of the user selection
+  if (userNumberIn){
+      //inform the user if the return value is true
+    window.alert('you included unmbers');
+   return true;
+     //inform the user if the return value is false
+  }else{
+    window.alert('you choose not to include numbers');
+  }
+return false
+};
 
+//asking the user for number alphabet
+function symbolInput() {
+   //ask the user if they like to add symbol
+  var usersymbolIn = window.confirm('would you like to use spical characters');
+     // check the return value of the user selection
+  if (usersymbolIn) {
+    //inform the user if the return value is true
+    window.alert('you included spical characters');
+    return true;
+    //inform the user if the return value is false
+  } else {
+    window.alert('you choose not to include spical characters');
+  }
+  return false;
+};
 
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
-
-// Write password to the #password input
+//create generatePassword function to store the inmput function value 
+var generatePassword =function(){
+  var passwordLength =lengthInput();
+  var isUpperCase = upperInput();
+  var isLowerCase = lowerInput();
+  var isNumbers = numberInput();
+  var isSymbols = symbolInput();
+//create an array for selecte category 
+  var selectCateArr = [{isUpperCase} ,{isLowerCase} ,{isNumbers} ,{isSymbols}];
+  //ensure the user select at less on password category 
+  while (selectCateArr === false) {
+    lengthInput();
+    upperInput();
+    lowerInput();
+    numberInput();
+    symbolInput();
+    break;
+  };
+}
 function writePassword() {
+ 
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
+  for (var i =0; i <= lengthInput; i++){
+    var newPassword = Math.floor(string.number * Math.rondom());
+    password+=newPassword
+   
+  }
+   console.log(password);
 
   passwordText.value = password;
 
-}
+};
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
