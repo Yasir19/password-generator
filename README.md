@@ -42,3 +42,18 @@ function writePassword() {
     symbolInput();
     break;
   }
+1. Create another variable that will start empty, could be global or inside the function - but will hold all possible options var options = []
+2. Write if statements, for each true/false variable - and evaluate what the user chose if (isUppercase) { //do something here }
+3. Inside the if statement, push that array into the BIG options array if user said yes --> options.push(uppercase) **I would console log the options array to make sure it's how you want it to be
+4. After if statements, options array should hold all potential characters the user said yes to, so now loop over it and create the password string, you will loop over it using the lengthInput
+
+
+
+
+
+1:40
+So - just work on getting that array/if statement to work - then move onto creating password once that does what is is expected
+1:40
+You got this!!
+1:41
+Work on those next steps, and if you need more assistance after please reach out to us again!

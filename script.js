@@ -95,39 +95,94 @@ function symbolInput() {
   }
   return false;
 };
-
-
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
-//create generatePassword function to store the inmput function value 
-var generatePassword =function(){
+ 
+//create generatedPassword function to store the input function value 
+var generatedPassword =function() {
   var passwordLength =lengthInput();
   var isUpperCase = upperInput();
   var isLowerCase = lowerInput();
   var isNumbers = numberInput();
   var isSymbols = symbolInput();
-//create an array for selecte category 
-  var selectCateArr = [{isUpperCase} ,{isLowerCase} ,{isNumbers} ,{isSymbols}];
-  //ensure the user select at less on password category 
-  while (selectCateArr === false) {
-    lengthInput();
-    upperInput();
-    lowerInput();
-    numberInput();
-    symbolInput();
-    break;
-  };
-}
+    //ensure the user select at less on password category 
+     while (!isUpperCase && !isLowerCase && !isNumbers && !isSymbols){
+      window.alert('you did not select any character type, please select at least one type.');
+      upperInput();
+      lowerInput();
+      numberInput();
+      symbolInput();
+    }
+    var userInput = {
+      passwordLength : passwordLength,
+      isUpperCase : isUpperCase,
+      isLowerCase : isLowerCase,
+      isNumbers: isNumbers,
+      isSymbols :isSymbols
+    };
+    return userInput;
+    }
+    // function for getting a random element ftom user Input 
+    function randomChar (array){
+      var randIndex = Math.floor(Math.random() *array.length); 
+      var randEl = array[randIndex];
+      return randEl;
+    }
+    // function to gnerate password with user input 
+    var generatePassword = function() {
+      var category = generatedPassword();
+
+      // vbariable to store password 
+      var output =[];
+      //array to store types pf characters that will be included in the password 
+      var possCharacters =[];
+      // array to store one of each type of selected category to ensure each one will be used 
+      var charArray =[];
+
+      // 1- check if the generatedPassword function has UpperCase then 
+      //2- add them to possArray
+      //3- push it to charArray
+      if (category.isUpperCase){
+        possCharacters = possCharacters.concat(uppercase());
+        charArray.push(randomChar(uppercase()));
+      }
+       // 1- check if the generatedPassword function has lowerCase then 
+      //2- add them to possArray
+      //3- push it to charArray
+      if (category.isLowerCase){
+        possCharacters = possCharacters.concat(lowerCase());
+        charArray.push(randomChar(lowerCase()));
+      }
+       // 1- check if the generatedPassword function has numbers then 
+      //2- add them to possArray
+      //3- push it to charArray
+      if (category.isNumbers){
+        possCharacters = possCharacters.concat(number());
+        charArray.push(randomChar(number()));
+      }
+       // 1- check if the generatedPassword function has UpperCase then 
+      //2- add them to possArray
+      //3- push it to charArray
+      if (category.isSymbols){
+        possCharacters = possCharacters.concat(spicalChar());
+        charArray.push(randomChar(spicalChar()));
+      }
+       // For loop to iterate over the password length from the options object, selecting random indices from the array of possible characters and concatenating those characters into the result variable
+       for (var i= 0; i <category.passwordLength; i++ ){
+         var charactersEl = randomChar(possCharacters);
+         output.push(charactersEl);
+       }
+       // Mix in at least one of each guaranteed character in the output
+       for (var i =0; i< charArray.passwordLength; i++ ) {
+         output[i] =charArray[i];
+       }
+       // Transform the result into a string and pass into writePassword
+       return output.join('');
+    }
+    // Assignment Code
+var generateBtn = document.querySelector("#generate");
+  
 function writePassword() {
- 
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  for (var i =0; i <= lengthInput; i++){
-    var newPassword = Math.floor(string.number * Math.rondom());
-    password+=newPassword
-   
-  }
-   console.log(password);
 
   passwordText.value = password;
 
