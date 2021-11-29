@@ -96,7 +96,7 @@ function symbolInput() {
   return false;
 };
  
-//create generatePassword function to store the input function value
+//create generatedPassword function to store the input function value
 var generatedPassword =function() {
   var passwordLength =lengthInput();
   var isUpperCase = upperInput();
@@ -111,6 +111,7 @@ var generatedPassword =function() {
       numberInput();
       symbolInput();
     }
+
     var userInput = {
       passwordLength : passwordLength,
       isUpperCase : isUpperCase,
@@ -120,13 +121,13 @@ var generatedPassword =function() {
     };
     return userInput;
     }
-    // function for getting a random element from user Input 
+    // function for getting a random element from an array
     function randomChar (array){
       var randIndex = Math.floor(Math.random() *array.length); 
       var randEl = array[randIndex];
       return randEl;
     }
-    // function to generate password with user input
+    // function for getting a random element from an array
     var generatePassword = function() {
       var category = generatedPassword();
 
@@ -151,7 +152,7 @@ var generatedPassword =function() {
         possCharacters = possCharacters.concat(lowerCase());
         charArray.push(randomChar(lowerCase()));
       }
-       //1-c heck if the generatedPassword function has lowerCase then 
+       //1-check if the generatedPassword function has lowerCase then 
       //2- add them to possArray
       //3- push it to charArray
       if (category.isNumbers){
