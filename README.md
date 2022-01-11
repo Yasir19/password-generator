@@ -71,3 +71,6 @@ THEN the password is either displayed in an alert or written to the page
 2- create a text area for the user to enter the password length. 
 3- create a clipboard to copy the password 
 4- Add a password vault to store each password been generated in a secure way. 
+
+## app link
+https://yasir19.github.io/password-generator/
