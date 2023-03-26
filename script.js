@@ -1,22 +1,22 @@
 //generate character function by using Math.
-var uppercase = function(){
+let getRandomUpperCase = function(){
   return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
 }
-var lowerCase = function(){
+let getRandomLowerCase = function(){
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
-var number = function(){
+let getRandomNumber = function(){
   return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
 }
-var spicalChar = function (){
-  var symbols ='!@#$%^&*(){}[]=<>/,.'
+let getRandomSpecialChar = function (){
+  let symbols ='!@#$%^&*(){}[]=<>/,.'
   return symbols[Math.floor(Math.random()* symbols.length)];
 };
 
 // input function (asking the user for input password length, password characters) 
-var lengthInput = function (){
+let lengthInput = function (){
     // prompt the user for password length
-  var userInput = window.prompt('Enter password length from 8 to 128 characters.');
+  let userInput = window.prompt('Enter password length from 8 to 128 characters.');
   userInput = parseInt(userInput);
 //check the user input
 if (userInput >=8 && userInput<=128){
@@ -32,9 +32,9 @@ lengthInput();
 };
 
 //asking the user for uppercase alphabet function
-var upperInput= function(){
+let upperInput= function(){
   //ask the user if they like to add uppercase 
-  var userUppercaseIn = window.confirm('Would you like UPPERCASE characters');
+  let userUppercaseIn = window.confirm('Would you like UPPERCASE characters');
   // check the return value of the user selection
   if (userUppercaseIn){
     //inform the user if the return value is true
@@ -49,9 +49,9 @@ return false
 
 
 //asking the user for lowecase alphabet
-var lowerInput= function(){
+let lowerInput= function(){
     //ask the user if they like to add lowercase
-  var userLowercaseIn = window.confirm('Would you like lowercase characters');
+  let userLowercaseIn = window.confirm('Would you like lowercase characters');
    // check the return value of the user selection
   if (userLowercaseIn){
         //inform the user if the return value is true
@@ -65,9 +65,9 @@ return false
 };
 
 //asking the user for numbers
-var numberInput= function(){
+let numberInput= function(){
     //ask the user if they like to add numbers
-  var userNumberIn = window.confirm('would you like to use numbers');
+  let userNumberIn = window.confirm('would you like to use numbers');
      // check the return value of the user selection
   if (userNumberIn){
       //inform the user if the return value is true
@@ -83,7 +83,7 @@ return false
 //asking the user for number alphabet
 function symbolInput() {
    //ask the user if they like to add symbol
-  var usersymbolIn = window.confirm('would you like to use spical characters');
+  let usersymbolIn = window.confirm('would you like to use spical characters');
      // check the return value of the user selection
   if (usersymbolIn) {
     //inform the user if the return value is true
@@ -97,12 +97,12 @@ function symbolInput() {
 };
  
 //create generatedPassword function to store the input function value
-var generatedPassword =function() {
-  var passwordLength =lengthInput();
-  var isUpperCase = upperInput();
-  var isLowerCase = lowerInput();
-  var isNumbers = numberInput();
-  var isSymbols = symbolInput();
+let generatedPassword =function() {
+  let passwordLength =lengthInput();
+  let isUpperCase = upperInput();
+  let isLowerCase = lowerInput();
+  let isNumbers = numberInput();
+  let isSymbols = symbolInput();
     //ensure the user select at least one password category 
     if (isUpperCase === false && isLowerCase === false && isNumbers === false && isSymbols ===false){
       window.alert('you did not select any character type, please select at least one type.');
@@ -112,7 +112,7 @@ var generatedPassword =function() {
       symbolInput();
     }
 
-    var userInput = {
+    let userInput = {
       passwordLength : passwordLength,
       isUpperCase : isUpperCase,
       isLowerCase : isLowerCase,
@@ -123,70 +123,62 @@ var generatedPassword =function() {
     }
     // function for getting a random element from an array
     function randomChar (array){
-      var randIndex = Math.floor(Math.random() *array.length); 
-      var randEl = array[randIndex];
+      console.log(array);
+      let randIndex = Math.floor(Math.random() *array.length); 
+      let randEl = array[randIndex];
       return randEl;
     }
     // function for getting a random element from an array
-    var generatePassword = function() {
-      var category = generatedPassword();
+    let generatePassword = function() {
+      let category = generatedPassword();
 
-      // variable to store password result
-      var output =[];
+      // letiable to store password result
+      let output =[];
       //array to store types of characters that will be included in the password
-      var possCharacters =[];
+      let possCharacters =[];
       // array to store one of each type of selected category to ensure each one will be used 
-      var charArray =[];
-
-      // 1- check if the generatedPassword function has UpperCase then 
-      //2- add them to possArray
-      //3- push it to charArray
-      if (category.isUpperCase){
-        possCharacters = possCharacters.concat(uppercase());
-        charArray.push(randomChar(uppercase()));
-      }
-       //1- check if the generatedPassword function has lowerCase then 
-       //2- add them to possArray
-       //3- push it to charArray
-      if (category.isLowerCase){
-        possCharacters = possCharacters.concat(lowerCase());
-        charArray.push(randomChar(lowerCase()));
-      }
-       //1-check if the generatedPassword function has lowerCase then 
-      //2- add them to possArray
-      //3- push it to charArray
-      if (category.isNumbers){
-        possCharacters = possCharacters.concat(number());
-        charArray.push(randomChar(number()));
-      }
-       //1- check if the generatedPassword function has lowerCase then 
-       //2- add them to possArray
-       //3- push it to charArray
-      if (category.isSymbols){
-        possCharacters = possCharacters.concat(spicalChar());
-        charArray.push(randomChar(spicalChar()));
-      }
-       //1- For loop to iterate over the password length from the UserInput object
-       //2-selecting random indices from the array of possCharacters
-       //3- contact those characters into the output variable by using the push method
-
-       for (var i= 0; i <category.passwordLength; i++ ){
-         var charactersEl = randomChar(possCharacters);
-         output.push(charactersEl);
-       }
-       // create a for loop to mix the output characters 
-       for (var i =0; i< charArray.length; i++ ) {
-         output[i] =charArray[i];
-       }
-       // Transform the result into a string and pass into writePassword
-       return output.join('');
+      let charArray =[];
+    // if the user wants uppercase letters, add them to the possCharacters array
+    if (category.isUpperCase) {
+      possCharacters.push(getRandomUpperCase);
+      charArray.push(getRandomUpperCase());
+    }
+  
+    // if the user wants lowercase letters, add them to the possCharacters array
+    if (category.isLowerCase) {
+      possCharacters.push(getRandomLowerCase);
+      charArray.push(getRandomLowerCase());
+    }
+  
+    // if the user wants numbers, add them to the possCharacters array
+    if (category.isNumbers) {
+      possCharacters.push(getRandomNumber);
+      charArray.push(getRandomNumber());
+    }
+  
+    // if the user wants special characters, add them to the possCharacters array
+    if (category.isSymbols) {
+      possCharacters.push(getRandomSpecialChar);
+      charArray.push(getRandomSpecialChar());
+    }
+    // loop through the rest of the password length and add random characters from the possCharacters array
+    for (let i = charArray.length; i < category.passwordLength; i++) {
+      let randomFunc = possCharacters[Math.floor(Math.random() * possCharacters.length)];
+      charArray.push(randomFunc());
+    }
+      // shuffle the charArray to randomize the password
+      charArray.sort(function(a, b){return 0.5 - Math.random()});
+  
+      // join the charArray into a string and return the result
+      output = charArray.join("");
+      return output;
     }
     // Assignment Code
-var generateBtn = document.querySelector("#generate");
+let generateBtn = document.querySelector("#generate");
   
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  let password = generatePassword();
+  let passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 
